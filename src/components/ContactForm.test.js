@@ -7,7 +7,7 @@ test('renders correctly', ()=> {
 })
 
 test('form will add fname, lname, email, and message to data in state and display on the page', () => {
-    const { getByLabelText, findByDisplayValue, findAllByText } = render(<ContactForm/>);
+    const { getByLabelText, findByTestId, findAllByText } = render(<ContactForm/>);
 
     // query for the form inputs
     const firstNameInput = getByLabelText(/first name/i);
@@ -16,15 +16,19 @@ test('form will add fname, lname, email, and message to data in state and displa
     const messageInput = getByLabelText(/message/i);
 
     //fireEvent function from RTL to fill inputs
-    fireEvent.change(firstNameInput, { target: { name: 'firstName', value: 'Mic' } });
+    fireEvent.change(firstNameInput, { target: { name: 'firstName', value: 'Michael' } });
     fireEvent.change(lastNameInput, { target: { name: 'lastName', value: 'Callahan' } });
     fireEvent.change(emailInput, { target: { name: 'email', value: 'Callahan@gmail.com' } });
     fireEvent.change(messageInput, { target: { name: 'message', value: 'Here is a message' } });
 
-    // const submitButton = findByDisplayValue(submit);
+    findByTestId('submit').then((res)=> {
+        fireEvent.click(res);
+    })
 
-    // fireEvent.click(submit);
+    // const submitButton = findByTestId('submit');
 
-    findAllByText(/callahan/i);
+    // fireEvent.click(submitButton);
+
+    findAllByText(/michael/i);
 
 })

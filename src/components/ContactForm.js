@@ -60,8 +60,7 @@ const ContactForm = () => {
             {JSON.stringify(data, null, 2)}
           </pre>
         )}
-        <input 
-          role='alert'
+        <input
           id="submit" 
           type="submit" />
       </form>
